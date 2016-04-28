@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *; media-src *; script-src *">
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/jquery-1.12.1.js"></script>
+    <script src="scripts/index.js"></script>
+    
+    <link rel="stylesheet" media="screen and (orientation: landscape)" href="css/index.css" type="text/css">
+</head>
+<body id="selectkeyboardlist">
+    <div>
+        <div class="header">
+            <p>Select Virtual Keyboard</p>
+            <button class="back_btn" id="back_btn_id">Back</button>
+        </div>
+        <div id="div_order">
+            <table class= "order_table">
+                <tbody>
+                    <tr class="order_items1" id="order_id1">
+                        <td>
+                            <label for="standard_id"><input type="radio" name="keyboardtype" class="radio_btn" id="standard_id" value="standard" />Standard Keyboard</label>
+                        </td>
+                    </tr>
+                    <tr class="order_items2" id="order_id2">
+                        <td>
+                            <label for="big_id"><input type="radio" name="keyboardtype" class="radio_btn" id="big_id" value="big" />Big Keyboard</label>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+</html>

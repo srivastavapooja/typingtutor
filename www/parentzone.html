@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *; media-src *; script-src *">
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/jquery-1.12.1.js"></script>
+    <script src="scripts/index.js"></script>
+    
+    <link rel="stylesheet" media="screen and (orientation: landscape)" href="css/index.css" type="text/css">
+</head>
+<body id="parentzone">
+    <div>
+        <div class="header">
+            <p>Settings</p>
+            <button class="help_btn" id="help_btn_id">Help</button>
+            <button class="back_btn" id="back_btn_id">Back</button>
+            
+        </div>
+        <div id="div_parentzone">
+            <table class="settings_table">
+                <tbody>
+                    <tr>
+                        <td class="settings_items1" id="settings_id1">
+                        <p id="edit1">View-Edit Word list</p></td>
+                    </tr>
+                    <tr>
+                        <td class="settings_items2" id="settings_id2">
+                            <p id="edit2">Select Word list</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="settings_items1" id="settings_id3">
+                        <p id="edit3">Display Order</p></td>
+                    </tr>
+                    <tr>
+                        <td class="settings_items2" id="settings_id4">
+                            <p id="edit4">Record Custom Words</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="settings_items1" id="settings_id5">
+                            <p id="edit5">Select Virtual Keyboard</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

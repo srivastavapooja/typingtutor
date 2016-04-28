@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *; media-src *; script-src *">
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/jquery-1.12.1.js"></script>
+    <script src="scripts/index.js"></script>
+    
+    <link rel="stylesheet" media="screen and (orientation: landscape)" href="css/index.css" type="text/css">
+</head>
+<body id="recording">
+    <div id="firstdiv">
+        <div class="header">
+            <p>Record Custom Words</p>
+            <button class="record_btn" id="record_btn_id">Record</button>
+            <button class="play_btn" id="play_btn_id">Play</button>
+            <button class="del_record_btn" id="del_record_btn_id">Delete</button>
+            <button class="back_btn" id="back_btn_id">Back</button>
+        </div>
+        
+        <div id="div_edit">
+            <ul id="list_id"></ul>
+        </div>
+        
+    </div>
+    <div id="playalert">
+        <p>No Recording Available</p>
+        <button id="play_ok_btn">OK</button>
+    </div>
+    <div id="deleteconfirm">
+        <p>Recording Deleted</p>
+        <button id="delete_ok_btn">OK</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *; media-src *; script-src *">
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/jquery-1.12.1.js"></script>
+    <script src="scripts/index.js"></script>
+    
+    <link rel="stylesheet" media="screen and (orientation: landscape)" href="css/index.css" type="text/css">
+</head>
+<body id="selectlist">
+    <div id="firstdiv">
+        <div class="header">
+            <p>Select Word Lists</p>
+            <button class="back_btn" id="back_btn_id">Back</button>
+        </div>
+        
+        <div id="div_selectlist">
+            <ul id="selectlist_ul">
+                <li class="word_li" id="li1">
+                    <label for="preprimer"><input type="checkbox" id="preprimer" name="select_word_list" value="1"/>Dolch Word List - Preprimer</label>
+                </li>
+                <li class="word_li" id="li2">
+                    <label for="primer"><input type="checkbox" id="primer" name="select_word_list" value="2"/>Dolch Word List - Primer</label>
+                </li>
+                <li class="word_li" id="li3">
+                    <label for="first"><input type="checkbox" id="first" name="select_word_list" value="3"/>Dolch Word List - 1st Grade</label>
+                </li>
+                <li class="word_li" id="li4">
+                    <label for="second"><input type="checkbox" id="second" name="select_word_list" value="4"/>Dolch Word List - 2nd Grade</label>
+                </li>
+                <li class="word_li" id="li5">
+                    <label for="third"><input type="checkbox" id="third" name="select_word_list" value="5"/>Dolch Word List - 3rd Grade</label>
+                </li>
+                <li class="word_li" id="li6">
+                    <label for="nouns"><input type="checkbox" id="nouns" name="select_word_list" value="6"/>Dolch Word List - Nouns</label>
+                </li>
+                <li class="word_li" id="li7">
+                    <label for="custom"><input type="checkbox" id="custom" name="select_word_list" value="7"/>Custom Word List</label>
+                </li>
+
+                </ul>
+        </div>
+        
+    </div>
+    <div id="listalert">
+        <p>At least one list must be selected. Selecting Default</p>
+        <button id="list_ok_btn">OK</button>
+    </div>
+
+    
+</body>
+</html>

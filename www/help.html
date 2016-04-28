@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *; media-src *; script-src *">
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/jquery-1.12.1.js"></script>
+    <script src="scripts/index.js"></script>
+    
+    <link rel="stylesheet" media="screen and (orientation: landscape)" href="css/index.css" type="text/css">
+</head>
+<body id="help">
+    <div>
+        <div class="header">
+            <p>Help</p>
+            <button class="back_btn" id="back_btn_id">Back</button>
+            
+        </div>
+        <div id="help_div">
+            <h4>About This App</h4>
+            <p>This is a typing app developed keeping in mind, the children with autism and other special needs. The app has three levels for kids with different levels of functioning.
+            The Beginner and Advanced level present a virtual keyboard. The key to be pressed is highlighted to help with scanning and focussing on the right key in the keyboard layout. In the beginner level, only one key is highlighted at a time. In the Advanced level, all the keys in the word are highlighted to prompt the child make a selection.
+            The Expert level present the actual iOS keyboard. Only the correct keystroke is captured and incorrect responses lead to audio prompt.
+            All the level present auditory prompts (audio of next alphabet to be pressed)and visual prompts (highlighting next alphabet).
+            </p>
+            <h4>List Of Available Words</h4>
+            <p>The app provides with preloaded Dolch Word lists - Pre-primer, Primer, 1st Grade, 2nd Grade, 3rd Grade and Nouns.
+            The Dolch word lists are non editable. They can be viewed in View-Edit Word List settings. 
+            In addition to preloaded Dolch lists, Custom word list is available at View-Edit Word List/Custom Word List. The Custom word list is editable. New words be be stored in device local storage. </p>
+            <h4>Adding/Deleting Words</h4>
+            <p>Users can add new words in the custom word list at View-Edit Word List/Custom Word List, by clicking to the Add button. Any new word may only include alphabets, space, comma and fullstop.
+            Words can be deleted from Custom Word List by clicking the delete button and selecting the words to be deleted.</p>
+            <h4>Selecting Word List</h4>
+            <p>Users can select the word list to use by going to Select Word List setting. More than one list can be selected. If no list is selected, default selection (Dolch Word List - preprimer) will be made. If the Custom word list is empty, it will not be visible for selection.</p>
+            <h4>Setting Display Order Of Words</h4>
+            <p>Three display orders are available - Default(as appearing in the list), Alphabetical and Random. Order of words can be set from Display Order setting.</p>
+            <h4>Recording Custom Words</h4>
+            <p>For each word, the audio for the word is played followed by audio prompt of individual letters. The audio for Dolch Words is preloaded. Users can record the custom words that they add in the Custom Word list. Audio can be recorded after adding new words using Record Custom Words Settings. For best result to avoid overlapping of sounds, length of the audio should be 2 sec or less. </p>
+            <h4>Keyboard Types and Sizes</h4>
+            <p>The Beginner and Advanced levels uses a virtual keyboard with key highlight feature for visual prompt and scanning. There are two sizes for virtual keyboard - The standard size similar to the ios keyboard and the big size keyboard for children having motor coordination or visual challenges. The virtual keyboard size can be selected from Select Virtual Keyboard Setting. 
+            The Expert level uses the standard iOS keyboard.</p>
+            <h4>Incorrect Response</h4>
+            <p>In the Advanced level, it may be possible that the typed word is spelled incorrectly. In case of incorrect response, the same word is displayed for next attempt, after two attempts the correct spelling is displayed and the next word is selected.</p>
+        </div>
+    </div>
+</body>
+</html>
