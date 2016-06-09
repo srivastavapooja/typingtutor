@@ -1,4 +1,4 @@
-﻿/*general settings*/
+/*general settings*/
 *:not(.new_word, #text_id2){
 -webkit-user-select: none;
 -moz-user-select: none;
@@ -39,7 +39,7 @@
  }   
 
 /*ipad and tablets*/
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+@media only screen and (min-device-height: 768px) and (max-device-height: 1290px) {
     #fingertap {
         display: none;
         z-index: 1;
@@ -307,6 +307,280 @@
         background-color: lightgray;
         text-align: center;
         font: bold 2em Georgia, serif;
+        color: black;
+    }
+}
+@media only screen and (max-device-height: 966px) {
+    
+    #fingertap {
+        display: none;
+        z-index: 1;
+        border: 2px solid rgb(175, 220, 228);
+        position: absolute;
+        right: 200px;
+        top: 100px;
+        width: 33%;
+        height: 40%;
+    }
+
+    #welldone_id, #incorrect_id {
+        border: 0px;
+        display: none;
+        z-index: 1;
+        position: absolute;
+        right: 50px;
+        top: 50px;
+        width: 80%;
+        height: 80%;
+    }
+
+    .header {
+        width: 100%;
+        height: 60px;
+        background-color: rgb(127,127,127);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        text-align: center;
+        z-index: 1;
+        font: bold 1em Georgia, serif;
+        color: black;
+    }
+
+    #add_word_div, #addalert, #playalert, #deletealert, #deleteconfirm, #listalert, #correct_word_div {
+        display: none;
+        font: bold 1em Georgia, serif;
+        background-color: rgb(127,127,127);
+        border: 2px solid black;
+        border-radius: 10px;
+        position: absolute;
+        right: 200px;
+        top: 40px;
+        width: 30%;
+        height: 100px;
+        z-index: 2;
+        text-align: center;
+        padding: 10px 10px 10px 10px;
+    }
+    #correct_word_div{
+        background-color: white;
+    }
+    #div_edit, #div_order, #dolchwords, #div_selectlist, #help_div {
+        position: absolute;
+        top:60px;
+        bottom: 20px;
+        left: 0px;
+        width: 100%;
+        overflow: auto;
+        font: bold 0.8em Georgia, serif;
+        color: black;
+    }
+    #help_div{
+        font: 1em Georgia, serif;
+    }
+    input[type=checkbox] {
+        background: rgb(255,0,128);
+        display: none;
+        margin-right: 20px;
+    }
+
+        input[type=checkbox]:checked {
+            background: red;
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+    .back_btn, .refresh_btn, .help_btn, .mute_btn,.add_btn, .delete_btn, .record_btn, .play_btn, .del_record_btn, .save_btn, .cancel_btn, #add_ok_btn, #play_ok_btn, #delete_ok_btn, #list_ok_btn {
+        border: 1px solid black;
+        height: 30px;
+        width: 70px;
+        border-radius: 10px;
+        background-color: black;
+        text-align: center;
+        font: bold 0.8em Georgia, serif;
+        color: white;
+    }
+
+    .back_btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .refresh_btn, .help_btn {
+        position: absolute;
+        top: 10px;
+        right: 90px;
+    }
+    .volume_btn{
+        background: url(../images/speaker.png) center no-repeat;
+        position: absolute;
+        height: 45px;
+        width: 45px;
+        border:none;
+        top: 10px;
+        right: 200px;
+    }
+    .mute_btn{
+        background: url(../images/mute.png) center no-repeat;
+        border: none;
+        position: absolute;
+        height: 45px;
+        width: 45px;
+        top: 10px;
+        right: 200px;
+    }
+    .add_btn, .record_btn {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    .delete_btn, .play_btn {
+        position: absolute;
+        left: 90px;
+        top: 10px;
+    }
+    .del_record_btn{
+        position: absolute;
+        left: 170px;
+        top: 10px;
+    }
+    
+
+    .parent_btn, .start_btn, .level_btn {
+        border: 1px solid rgb(175, 220, 228);
+        border-radius: 10px;
+        background-color: rgb(175, 220, 228);
+        text-align: center;
+        font: bold 1em Georgia, serif;
+        color: black;
+        width: 150px;
+        height: 60px;
+    }
+
+    .start_btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 100px;
+    }
+
+    .settings_table, .wordlist_table {
+        position: absolute;
+        width: 100%;
+        top: 60px;
+        left: 0px;
+    }
+
+    .order_table {
+        width: 100%;
+        top: 60px;
+        left: 0px;
+    }
+    #list_id{
+        list-style:none;
+    }
+    .settings_items1, .order_items1, .wordlist_items1 {
+        border: 2px solid rgb(175, 220, 228);
+        width: 100%;
+        height: 30px;
+        background-color: rgb(175, 220, 228);
+        font: bold 0.8em Georgia, serif;
+    }
+
+    .settings_items2, .order_items2, .wordlist_items2 {
+        border: 2px solid rgb(151, 187, 194);
+        width: 100%;
+        height: 30px;
+        background-color: rgb(151, 187, 194);
+        font: bold 0.8em Georgia, serif;
+    }
+    #li1, #li3,#li5,#li7{
+        background-color: rgb(175, 220, 228);
+        margin-bottom:10px;
+    }
+    #li2,#li4, #li6{
+        background-color: rgb(151, 187, 194);
+        margin-bottom:10px;
+    }
+    .text {
+        position: center;
+        width: 50%;
+        height: 50px;
+        font: bold 2em Georgia, serif;
+        color: black;
+        text-align: center;
+    }
+    .word{
+     font: bold 2em Georgia, serif;
+}
+
+    #correct_word_id{
+        font: bold 1.5em Georgia, serif;
+        color: black;
+    }
+    .level_div {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 80px;
+        line-height: 60px;
+    }
+
+    .keyboard {
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        background-color: white;
+    }
+
+    .keyboard_ln1, .keyboard_ln3 {
+        width: 100%;
+        height: 50px;
+    }
+
+    .keyboard_ln2{
+        width: 80%;
+        height: 50px;
+        position: relative;
+        padding-left: 25px;
+    }
+    .keyboard_ln4{
+        width: 50%;
+        height:50px;
+        padding-left: 150px;
+    }
+
+    .keyboard_btn {
+        height: 50px;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: lightgray;
+        text-align: center;
+        font: bold 1em Georgia, serif;
+        color: black;
+    }
+
+    .keyboard_btn_highlight {
+        height: 50px;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: yellow;
+        text-align: center;
+        font: bold 1em Georgia, serif;
+        color: black;
+    }
+
+    #spacebar {
+        width: 90%;
+        height: 50px;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: lightgray;
+        text-align: center;
+        font: bold 1em Georgia, serif;
         color: black;
     }
 }
