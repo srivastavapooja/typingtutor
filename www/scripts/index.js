@@ -1,4 +1,4 @@
-﻿// For an introduction to the Blank template, see the following documentation:
+// For an introduction to the Blank template, see the following documentation:
 // http://go.microsoft.com/fwlink/?LinkID=397704
 // To debug code on page load in Ripple or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
@@ -41,7 +41,7 @@
             var keyboard = localStorage.getItem('keyboardtype');
             if (keyboard == null) {
                 localStorage.setItem('keyboardtype', 'standard');
-                keyboard = 'big';
+                keyboard = 'standard';
             }
             if (keyboard == 'standard') {
                 $('<link rel="stylesheet" type="text/css" href="' + 'css/index - Standard.css' + '" >').appendTo("head");
@@ -70,7 +70,7 @@
                 }
             }, 300);
             for (var i = 97; i < 123; i++) {
-                var filename = "res/audio/" + String.fromCharCode(i) + ".wav";
+                var filename = "res/audio/_" + String.fromCharCode(i) + ".wav";
                 loadAudio(filename);
             }
             //  loadAudio('res/audio/away.wav');
@@ -141,34 +141,92 @@
            // loadAudio('res/audio/fanfare.wav');
 
             /*Handle backspace key in Keyup event as backspace key cannot be listened in keypress event*/
-            $('#editor2').keyup(function (e) {
-                if (e.keyCode == 8) {
+            if (cordova.platformId == 'ios') {
+                $('#editor2').keyup(function (e) {
+                    if (e.keyCode == 8) {
+                        var typed_word = document.getElementById("text_id2").value;
+                        var previousspanid = "span_id" + (typed_word.length + 1);
+                        $('#' + previousspanid).removeClass("span_highlight").addClass("span_class");
+                    }
+                    highlightKeyExpert();
+                });
+
+                /*Handle keypress events for character keys. If key pressed not the same as expected then prevent default action, else continue*/
+                $('#editor2').keypress(function (e) {
+                    var current_word = document.getElementById("word_id").textContent;
                     var typed_word = document.getElementById("text_id2").value;
-                    var previousspanid = "span_id" + (typed_word.length + 1);
-                    $('#' + previousspanid).removeClass("span_highlight").addClass("span_class");
+                    
+                    var ch = current_word.substr(typed_word.length, 1);
+                    var ch_upper, ch_lower, charcode_upper, charcode_lower;
+                    if ((ch == ",") || (ch == ".") || (ch == " ")) {
+                        charcode_upper = charcode_lower = ch.charCodeAt(0);
+                    } else {
+                        ch_upper = ch.toUpperCase();
+                        ch_lower = ch.toLowerCase();
+                        charcode_upper = ch_upper.charCodeAt(0);
+                        charcode_lower = ch_lower.charCodeAt(0);
+                    }
+                    if ((charcode_upper == e.charCode) || (charcode_lower == e.charCode)) {
+                    }
+                    else
+                        e.preventDefault();
+                });
+            }
+            if (cordova.platformId == 'android') {
+             /*   $("#text_id2").on('input', function () {
+                    var typed_word = document.getElementById("text_id2").value;
+                    var ch = typed_word.substr(typed_word.length-1, 1);
+                    var ch_upper, ch_lower, charcode_upper, charcode_lower;
+                    if ((ch == ",") || (ch == ".") || (ch == " ")) {
+                        charcode_upper = charcode_lower = ch.charCodeAt(0);
+                    } else {
+                        ch_upper = ch.toUpperCase();
+                        ch_lower = ch.toLowerCase();
+                        charcode_upper = ch_upper.charCodeAt(0);
+                        charcode_lower = ch_lower.charCodeAt(0);
+                    }
+                    if ((ch_upper == current_word[typed_word.length - 1]) || (ch_lower == current_word[typed_word.length - 1])) {
+                        
+                    }
+                    else {
+                        document.getElementById("text_id2").value = typed_word.substr(0, typed_word.length - 1);
+                    }
+                    highlightKeyExpert();
+                });*/
+                $('#editor2').keyup(function (e) {
+                    if (e.keyCode == 8) {
+                        var typed_word = document.getElementById("text_id2").value;
+                        var previousspanid = "span_id" + (typed_word.length);
+                        $('#' + previousspanid).removeClass("span_highlight").addClass("span_class");
 
-                }
-                highlightKeyExpert();
-            });
+                    } else {
+                        var typed_word = document.getElementById("text_id2").value;
+                        var ch = typed_word.substr(typed_word.length - 1, 1);
+                        var ch_upper, ch_lower, charcode_upper, charcode_lower;
+                        if ((ch == ",") || (ch == ".") || (ch == " ")) {
+                            charcode_upper = charcode_lower = ch.charCodeAt(0);
+                        } else {
+                            ch_upper = ch.toUpperCase();
+                            ch_lower = ch.toLowerCase();
+                            charcode_upper = ch_upper.charCodeAt(0);
+                            charcode_lower = ch_lower.charCodeAt(0);
+                        }
+                        if ((ch_upper == current_word[typed_word.length - 1]) || (ch_lower == current_word[typed_word.length - 1])) {
 
-            /*Handle keypress events for character keys. If key pressed not the same as expected then prevent default action, else continue*/
-            $('#editor2').keypress(function (e) {
-                var current_word = document.getElementById("word_id").textContent;
-                var typed_word = document.getElementById("text_id2").value;
-                var ch = current_word.substr(typed_word.length, 1);
-                var ch_upper, ch_lower, charcode_upper, charcode_lower;
-                if ((ch == ",") || (ch == ".") || (ch == " ")) {
-                    charcode_upper = charcode_lower = ch.charCodeAt(0);
-                } else {
-                    ch_upper = ch.toUpperCase();
-                    ch_lower = ch.toLowerCase();
-                    charcode_upper = ch_upper.charCodeAt(0);
-                    charcode_lower = ch_lower.charCodeAt(0);
-                }
-                if ((charcode_upper == e.charCode) || (charcode_lower == e.charCode)) {
-                }
-                else
-                    e.preventDefault();
+                        }
+                        else {
+                            document.getElementById("text_id2").value = typed_word.substr(0, typed_word.length - 1);
+                        }
+                    }
+                    highlightKeyExpert();
+                });
+            }
+            /*Handle the speaker button*/
+            $("#volume_id").click(function () {
+                $(".volume_btn").toggleClass("mute_btn");
+                document.getElementById("text_id2").focus();
+                Keyboard.show();
+
             });
 
             /*Handle refresh button*/
@@ -214,7 +272,7 @@
             document.getElementById("fingertap").addEventListener('touchend', function (e) {
                 if (document.getElementById("fingertap").style.display == "inline") {
                     var touchpoints = e.touches;
-                    if (touchpoints.length == 0) {
+                    if (touchpoints.length == 1) {
                         pageTransition('left', 'parentzone.html');
                     } else {
                         document.getElementById("fingertap").style.display = "none";
@@ -225,7 +283,7 @@
             
             document.getElementById("parent_id").addEventListener('touchend', function (e) {
                 var touchlist = e.touches;
-                if (touchlist.length == 0) {
+                if (touchlist.length == 1) {
                     pageTransition('left', 'parentzone.html');
                 } else {
                     document.getElementById("fingertap").style.display = "inline";
@@ -381,6 +439,12 @@
 
         /*Add the list item for Custom word list only if the custom list file is not empty*/
         var basepath = cordova.file.documentsDirectory;
+        
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+        if (isAndroid)
+            basepath = cordova.file.dataDirectory;
+
         window.resolveLocalFileSystemURL(basepath + "res/wordlist.txt", function (dir) {
             dir.file(function (file) {
                 var reader = new FileReader();
@@ -502,7 +566,13 @@
             filename = "res/audio/" + filename;
             console.log(filename);
             if (filename != null) {
-                window.resolveLocalFileSystemURL(cordova.file.documentsDirectory + filename, function (dir) {
+                var basepath = cordova.file.documentsDirectory;
+                var ua = navigator.userAgent.toLowerCase();
+                var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+                if (isAndroid)
+                    basepath = cordova.file.dataDirectory;
+
+                window.resolveLocalFileSystemURL(basepath + filename, function (dir) {
                     var media = new Media(dir.toInternalURL(), function () {
                         media.release();
                     }, function (e) {
@@ -802,6 +872,10 @@
 /*function to load audio files during initial page load, if they are not already present in documents directory*/
     function loadAudio(filename) {
         var basepath = cordova.file.documentsDirectory;
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+        if(isAndroid)
+            basepath = cordova.file.dataDirectory;
         window.resolveLocalFileSystemURL(basepath + filename, function (dir) {
         }, function () {
             var fileTransfer = new FileTransfer();
@@ -819,6 +893,12 @@
     function readWordFile() {
         filereadcomplete = false;
         var basepath = cordova.file.documentsDirectory;
+        var basepath = cordova.file.documentsDirectory;
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+        if (isAndroid)
+            basepath = cordova.file.dataDirectory;
+
         var filename = "res/wordlist.txt";
         window.resolveLocalFileSystemURL(basepath + filename, function (dir) {
             dir.file(function (file) {
@@ -959,9 +1039,9 @@
                 document.getElementById("refresh_id").style.display = "inline";
 
                 if ((id != "comma") && (id != "dot") && (id != "spacebar")) {
-                    playMedia("res/audio/" + id + ".wav");
+                    playMedia("res/audio/_" + id + ".wav");
                     timer = setInterval(function () {
-                        playMedia("res/audio/" + id + ".wav");
+                        playMedia("res/audio/_" + id + ".wav");
                     }, 10000);
                 }
             }, 2000);
@@ -974,9 +1054,9 @@
             $('#' + spanid).removeClass("span_class").addClass("span_highlight");
 
             if ((id != "comma") && (id != "dot") && (id != "spacebar")) {
-                playMedia("res/audio/" + id + ".wav");
+                playMedia("res/audio/_" + id + ".wav");
                 timer = setInterval(function () {
-                    playMedia("res/audio/" + id + ".wav");
+                    playMedia("res/audio/_" + id + ".wav");
                     
                 }, 10000);
             }
@@ -1015,9 +1095,9 @@
                 ch = current_word.substr(0, 1);
                 id = getKeyId(ch);
                 if ((id != "comma") && (id != "dot") && (id != "spacebar")) {
-                    playMedia("res/audio/" + id + ".wav");
+                    playMedia("res/audio/_" + id + ".wav");
                     timer = setInterval(function () {
-                        playMedia("res/audio/" + id + ".wav");
+                        playMedia("res/audio/_" + id + ".wav");
                     }, 10000);
                 }
             }, 2000);
@@ -1096,9 +1176,9 @@
             ch = current_word.substr(typed_word.length, 1);
             id = getKeyId(ch);
             if ((id != "comma") && (id != "dot") && (id != "spacebar")) {
-                playMedia("res/audio/" + id + ".wav");
+                playMedia("res/audio/_" + id + ".wav");
                 timer = setInterval(function () {
-                    playMedia("res/audio/" + id + ".wav");
+                    playMedia("res/audio/_" + id + ".wav");
                 }, 10000);
             }
             return;
@@ -1150,13 +1230,13 @@
 
             setTimeout(function () {
                 if ((id != "comma") && (id != "dot") && (id != "spacebar")) {
-                    playMedia("res/audio/" + id + ".wav");
+                    playMedia("res/audio/_" + id + ".wav");
 
                 }
             }, 2000);
         } else {
             if ((id != "comma") && (id != "dot") && (id != "spacebar")) {
-                playMedia("res/audio/" + id + ".wav");
+                playMedia("res/audio/_" + id + ".wav");
 
             }
         }
@@ -1165,6 +1245,11 @@
 /*common function to play audio file*/
     function playMedia(filename) {
         var audiourl = cordova.file.documentsDirectory + filename;
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+        if (isAndroid)
+            audiourl = cordova.file.dataDirectory+ filename;
+
         window.resolveLocalFileSystemURL(audiourl, function (dir) {
             var media = new Media(dir.toInternalURL(), function () {
                 media.release();
@@ -1230,7 +1315,13 @@
         document.getElementById("new_word_id").value = null;
         window.word_array.push(textitem);
 
-        window.resolveLocalFileSystemURL(cordova.file.documentsDirectory + "res", function (dir) {
+        var basepath = cordova.file.documentsDirectory;
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+        if (isAndroid)
+            basepath = cordova.file.dataDirectory;
+
+        window.resolveLocalFileSystemURL(basepath + "res", function (dir) {
             dir.getFile("wordlist.txt", { create: true }, function (file) {
 
                 file.createWriter(function (fileWriter) {
@@ -1240,6 +1331,7 @@
                     fileWriter.seek(fileWriter.length);
                     var blob = new Blob([textitem], { type: 'text/plain' });
                     fileWriter.write(blob);
+                    
                 });
             });
         });
@@ -1285,9 +1377,14 @@
             str = str + window.word_array[index] + '#';
         }
         str = str.substr(0, str.length - 1);
-        
+        var basepath = cordova.file.documentsDirectory;
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+        if (isAndroid)
+            basepath = cordova.file.dataDirectory;
+
         if (str.length == 0) {
-            window.resolveLocalFileSystemURL(cordova.file.documentsDirectory + "res", function (dir) {
+            window.resolveLocalFileSystemURL(basepath + "res", function (dir) {
                 dir.getFile("wordlist.txt", { create: true }, function (file) {
                     file.createWriter(function (fileWriter) {
                         fileWriter.truncate(0);
@@ -1295,7 +1392,7 @@
                 });
             });
         } else {
-            window.resolveLocalFileSystemURL(cordova.file.documentsDirectory + "res", function (dir) {
+            window.resolveLocalFileSystemURL(basepath + "res", function (dir) {
                 dir.getFile("wordlist.txt", { create: true }, function (file) {
                     file.createWriter(function (fileWriter) {
                         //   fileWriter.truncate(0);
@@ -1534,6 +1631,12 @@
         for (i = 0, len = mediaFiles.length; i < len; i += 1) {
             path = mediaFiles[i].localURL;
             var basepath = cordova.file.documentsDirectory;
+            
+            var ua = navigator.userAgent.toLowerCase();
+            var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+            if (isAndroid)
+                basepath = cordova.file.dataDirectory;
+
             window.resolveLocalFileSystemURL(basepath + filename, function (dir) {
             }, function () {
                 var fileTransfer = new FileTransfer();
@@ -1574,6 +1677,12 @@
     /*function to delete a previously recorded audio*/
     function deleteRecording(filename) {
         var basepath = cordova.file.documentsDirectory;
+        
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+        if (isAndroid)
+            basepath = cordova.file.dataDirectory;
+
         window.resolveLocalFileSystemURL(basepath + "res/audio", function (dir) {
             dir.getFile(filename, { create: false }, function (file) {
                 file.remove(function () { 
@@ -1591,6 +1700,10 @@
     function getAudioFileName(word) {
         word = word.toLowerCase();
         var audio = word.replace(/ /g, "_");
+        if (audio == 'a')
+            audio = '_a';
+        if (audio == 'i')
+            audio = '_i';
         return audio;
     }
 
